@@ -63,7 +63,7 @@ function onUpdate(dc as Dc) as Void {
         }
     var timeStamp= new Time.Moment(Time.today().value());
     var weekdayArray = ["Day", "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"] as Array<String>;
-    var monthArray = ["Month", "JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"] as Array<String>;
+    var monthArray = ["Month", "JAN", "FEB", "MAR", "APR", "MAY", "JUNE", "JULY", "AUG", "SEP", "OCT", "NOV", "DEC"] as Array<String>;
     
     //----------------Horoscope-------------------//
     var profile = UserProfile.getProfile();
@@ -213,6 +213,7 @@ function onUpdate(dc as Dc) as Void {
     var centerX = (dc.getWidth()) / 2;
     var wordFont =  WatchUi.loadResource( Rez.Fonts.smallFont );
     var bigFont= WatchUi.loadResource( Rez.Fonts.bigFont );
+    var smallFont =  WatchUi.loadResource( Rez.Fonts.xsmallFont );
     View.onUpdate(dc);
 
  /*     _                           _            _    
@@ -334,10 +335,25 @@ c: suncloudrain*/
     dc.drawText(175, 67, wordFont,  (userCAL+"!"), Graphics.TEXT_JUSTIFY_RIGHT ); 
     dc.setColor(0x000000, Graphics.COLOR_TRANSPARENT); //orange 0xF79400
     //Time Text
-    dc.drawText(50, 110,bigFont, hours.format("%02d"),  Graphics.TEXT_JUSTIFY_CENTER  );
-    dc.drawText(50, 160,bigFont, clockTime.min.format("%02d"),  Graphics.TEXT_JUSTIFY_CENTER  );
-    //dc.setColor(0xDEDE18, Graphics.COLOR_TRANSPARENT); //yellowLime 0xDEDE18
-    //dc.drawCircle(228-20, 115,centerX/8 ) ;
+    dc.drawText(50, 100,bigFont, hours.format("%02d"),  Graphics.TEXT_JUSTIFY_CENTER  );
+    dc.drawText(50, 150,bigFont, clockTime.min.format("%02d"),  Graphics.TEXT_JUSTIFY_CENTER  );
+    dc.drawText(50,220*screenHeightY,smallFont,(weekdayArray[today.day_of_week]), Graphics.TEXT_JUSTIFY_CENTER );
+    dc.drawText(50,238*screenHeightY,smallFont,(monthArray[today.month]+" "+ today.day +" " +today.year), Graphics.TEXT_JUSTIFY_CENTER );
+    dc.setColor(0xDEDE18, Graphics.COLOR_TRANSPARENT); //yellowLime 0xDEDE18
+    dc.drawText(208, 115, wordFont,  (userBattery+"*"), Graphics.TEXT_JUSTIFY_RIGHT ); 
+    dc.setColor(0xADE75A, Graphics.COLOR_TRANSPARENT); //green 0xADE75A
+    dc.drawText(221, centerX-5, wordFont, (userSTEPS+"$"), Graphics.TEXT_JUSTIFY_RIGHT ); 
+    /*
+calories exclaim
+#charge
+$foot
+>alarm
+*battery
+^heart
+_new message
++phone
+= large alarmring
+*/
     //dc.setColor(0xADE75A, Graphics.COLOR_TRANSPARENT); //green 0xADE75A
     //dc.drawCircle(241-20, centerX-5,centerX/8 ) ;
     //dc.setColor(0x8CA5F7, Graphics.COLOR_TRANSPARENT); //blue 0x8CA5F7
