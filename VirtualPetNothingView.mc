@@ -132,7 +132,7 @@ function onUpdate(dc as Dc) as Void {
     \__,_|_|  \__,_| \_/\_/    \___|_|\___/ \___|_|\_\
                                                    */
    
-    var dog = dogPhase(today.sec,userSTEPS); //userSTEPS or (today.sec*180)
+    var dog = dogPhase(today.sec, (today.sec*180)); //userSTEPS or (today.sec*180)
     dog.draw(dc);
     var sprite = spritePhase(today.sec); //userSTEPS or (today.sec*180)
     sprite.draw(dc);
@@ -154,32 +154,32 @@ function onUpdate(dc as Dc) as Void {
 
     dc.setColor(0x000000, Graphics.COLOR_TRANSPARENT); //orange 0xF79400
     //Time Text
-    dc.drawText(50, 90,bigFont, hours.format("%02d"),  Graphics.TEXT_JUSTIFY_CENTER  );
-    dc.drawText(50, 140,bigFont, clockTime.min.format("%02d"),  Graphics.TEXT_JUSTIFY_CENTER  );
-    dc.drawText(50,210*screenHeightY,smallFont,(weekdayArray[today.day_of_week]), Graphics.TEXT_JUSTIFY_CENTER );
-    dc.drawText(50,228*screenHeightY,smallFont,(monthArray[today.month]+" "+ today.day +" " +today.year), Graphics.TEXT_JUSTIFY_CENTER );
+    dc.drawText(50*screenWidthX, 90*screenHeightY,bigFont, hours.format("%02d"),  Graphics.TEXT_JUSTIFY_CENTER  );
+    dc.drawText(50*screenWidthX, 140*screenHeightY,bigFont, clockTime.min.format("%02d"),  Graphics.TEXT_JUSTIFY_CENTER  );
+    dc.drawText(50*screenWidthX,210*screenHeightY,smallFont,(weekdayArray[today.day_of_week]), Graphics.TEXT_JUSTIFY_CENTER );
+    dc.drawText(50*screenWidthX,228*screenHeightY,smallFont,(monthArray[today.month]+" "+ today.day +" " +today.year), Graphics.TEXT_JUSTIFY_CENTER );
      dc.setColor(chargeColor, Graphics.COLOR_TRANSPARENT);
-    dc.drawText(50, 245,wordFont,("#"), Graphics.TEXT_JUSTIFY_RIGHT );
+    dc.drawText(50*screenWidthX, 245*screenHeightY,wordFont,("#"), Graphics.TEXT_JUSTIFY_RIGHT );
      dc.setColor(phoneColor, Graphics.COLOR_TRANSPARENT);
-    dc.drawText(50, 245,wordFont,("+"), Graphics.TEXT_JUSTIFY_LEFT );
+    dc.drawText(50*screenWidthX, 245*screenHeightY,wordFont,("+"), Graphics.TEXT_JUSTIFY_LEFT );
     // Data Text
     if(today.sec%7 == 0 ||today.sec%7 == 6){dc.setColor(0xD65231, Graphics.COLOR_TRANSPARENT);}else{dc.setColor(0x000000, Graphics.COLOR_TRANSPARENT);} //red cinabar 0xD65231
-    dc.drawText(121, 35, wordFont,  (userHEART+"^"), Graphics.TEXT_JUSTIFY_RIGHT );
+    dc.drawText(121*screenWidthX, 35*screenHeightY, wordFont,  (userHEART+"^"), Graphics.TEXT_JUSTIFY_RIGHT );
     if(today.sec%7 == 1||today.sec%7 == 6){dc.setColor(0xF79400, Graphics.COLOR_TRANSPARENT);}else{dc.setColor(0x000000, Graphics.COLOR_TRANSPARENT);}
     //dc.setColor(0xF79400, Graphics.COLOR_TRANSPARENT); //orange 0xF79400
-    dc.drawText(160, 67, wordFont,  (userCAL+"!"), Graphics.TEXT_JUSTIFY_RIGHT ); 
+    dc.drawText(160*screenWidthX, 67*screenHeightY, wordFont,  (userCAL+"!"), Graphics.TEXT_JUSTIFY_RIGHT ); 
     //dc.setColor(0xDEDE18, Graphics.COLOR_TRANSPARENT); //yellowLime 0xDEDE18
     if(today.sec%7 == 2||today.sec%7 == 6){dc.setColor(0xDEDE18, Graphics.COLOR_TRANSPARENT);}else{dc.setColor(0x000000, Graphics.COLOR_TRANSPARENT);}
-    dc.drawText(180, 115, wordFont,  (userBattery+"*"), Graphics.TEXT_JUSTIFY_RIGHT ); 
+    dc.drawText(180*screenWidthX, 115*screenHeightY, wordFont,  (userBattery+"*"), Graphics.TEXT_JUSTIFY_RIGHT ); 
     //dc.setColor(0xADE75A, Graphics.COLOR_TRANSPARENT); //green 0xADE75A
      if(today.sec%7 == 3||today.sec%7 == 6){dc.setColor(0xADE75A, Graphics.COLOR_TRANSPARENT);}else{dc.setColor(0x000000, Graphics.COLOR_TRANSPARENT);}
-    dc.drawText(200, centerX-15, wordFont, (userSTEPS+"$"), Graphics.TEXT_JUSTIFY_RIGHT ); 
+    dc.drawText(200*screenWidthX, (centerX-15), wordFont, (userSTEPS+"$"), Graphics.TEXT_JUSTIFY_RIGHT ); 
     //dc.setColor(0x8CA5F7, Graphics.COLOR_TRANSPARENT); //blue 0x8CA5F7
     if(today.sec%7 == 4||today.sec%7 == 6){dc.setColor(0x8CA5F7, Graphics.COLOR_TRANSPARENT);}else{dc.setColor(0x000000, Graphics.COLOR_TRANSPARENT);}
-    dc.drawText(180, 215, wordFont, (userNotify+"_"), Graphics.TEXT_JUSTIFY_RIGHT ); 
+    dc.drawText(180*screenWidthX, 215*screenHeightY, wordFont, (userNotify+"_"), Graphics.TEXT_JUSTIFY_RIGHT ); 
     //dc.setColor(0xC673C6 , Graphics.COLOR_TRANSPARENT); //lavendar 0xC673C6
    if(today.sec%7 == 5||today.sec%7 == 6){dc.setColor(0xC673C6, Graphics.COLOR_TRANSPARENT);}else{dc.setColor(0x000000, Graphics.COLOR_TRANSPARENT);}
-    dc.drawText(150, 265, wordFont, (userAlarm+">"), Graphics.TEXT_JUSTIFY_RIGHT ); 
+    dc.drawText(150*screenWidthX, 265*screenHeightY, wordFont, (userAlarm+">"), Graphics.TEXT_JUSTIFY_RIGHT ); 
     
     
     /*calories exclaim
@@ -224,17 +224,15 @@ function dogPhase(seconds, steps){
     //390 Size up
     //416 Size up
     //454 Size up
- /* if (screenHeightY == 390){
-   venus2Y = (200*screenHeightY/360);
-  }
+  if (screenHeightY == 390){
+    venus2X = (60);
+    }
     if (screenHeightY == 416){
-   venus2Y = (212*screenHeightY/360);
-   venus2X = 120*screenWidthX/360;
-  }
-      if (screenHeightY == 454){
-   venus2Y = (220*screenHeightY/360);
-   venus2X = 130*screenWidthX/360;
-  }*/
+    venus2X = (95);
+    }
+    if (screenHeightY == 454){
+    venus2X = 130;
+    }
   var dogARRAY = [
     (new WatchUi.Bitmap({
             :rezId=>Rez.Drawables.dog0,
@@ -401,17 +399,15 @@ function spritePhase(seconds){
     //390 Size up
     //416 Size up
     //454 Size up
- /* if (screenHeightY == 390){
-   venus2Y = (200*screenHeightY/360);
-  }
+  if (screenHeightY == 390){
+    venus2X = 220;
+    }
     if (screenHeightY == 416){
-   venus2Y = (212*screenHeightY/360);
-   venus2X = 120*screenWidthX/360;
-  }
-      if (screenHeightY == 454){
-   venus2Y = (220*screenHeightY/360);
-   venus2X = 130*screenWidthX/360;
-  }*/
+    venus2X = 250;
+    }
+    if (screenHeightY == 454){
+    venus2X = 270;
+    }
 var spriteARRAY = [
     (new WatchUi.Bitmap({
             :rezId=>Rez.Drawables.sprite0,
