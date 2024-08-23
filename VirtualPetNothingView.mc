@@ -286,12 +286,13 @@ c: suncloudrain*/
    // moon1.draw(dc);
    //White : F8E8F8  ///gray 7B7B94
    //Pallet Town : A0D0F8 and C8E0D8
+   //Pallet Green, Grass Green, 
     var colorPallete = [0xC8E0D8,0xADE75A];
     var dog = dogPhase(today.sec,userSTEPS); //userSTEPS or (today.sec*180)
     dog.draw(dc);
     dc.setColor(0xFFFFFF, Graphics.COLOR_TRANSPARENT);
     dc.fillCircle(centerX*3/10, centerX,centerX ) ;
-    dc.setColor(colorPallete[0], Graphics.COLOR_TRANSPARENT);
+    dc.setColor(0xC8E0D8, Graphics.COLOR_TRANSPARENT);
     dc.setPenWidth(5);
     dc.drawCircle(centerX*3/10, centerX,centerX ) ;
     dc.setPenWidth(5);
@@ -299,21 +300,35 @@ c: suncloudrain*/
     dc.drawCircle(centerX*3/10, centerX,centerX+5 ) ;
     /*------------Draw Step Meter------------*/
     //Every 360 Steps Pikachu Levels up
-    dc.setPenWidth(16);
-    dc.setColor(0x7B7B94, Graphics.COLOR_TRANSPARENT);
-    dc.drawCircle(centerX*3/10, centerX, centerX*310/360);
-    dc.setColor(0xD6ADB5, Graphics.COLOR_TRANSPARENT);
-    dc.drawArc(centerX*3/10, centerX, centerX*310/360, Graphics.ARC_COUNTER_CLOCKWISE, 1, (userSTEPS+200) ); 
+    //dc.setPenWidth(16);
+    //dc.setColor(0x7B7B94, Graphics.COLOR_TRANSPARENT);
+    //dc.drawCircle(centerX*3/10, centerX, centerX*310/360);
+    //dc.setColor(0xD6ADB5, Graphics.COLOR_TRANSPARENT);
+   // dc.drawArc(centerX*3/10, centerX, centerX*310/360, Graphics.ARC_COUNTER_CLOCKWISE, 1, (userSTEPS+200) ); 
     dc.setPenWidth(5);
     //Data Circles
     dc.setColor(0xFFFFFF, Graphics.COLOR_TRANSPARENT);
+
+    
     dc.fillCircle(241, centerX,centerX/8 ) ;
-    dc.setColor(0xC673C6, Graphics.COLOR_TRANSPARENT);
-    dc.drawCircle(241, centerX,centerX/8 ) ;
-    dc.setColor(0xC673C6, Graphics.COLOR_TRANSPARENT);
-    dc.drawCircle(241, centerX,centerX/8 ) ;
-
-
+    dc.fillCircle(216, 272,centerX/8 ) ;
+    dc.fillCircle(157, 28,centerX/8 ) ;
+    dc.fillCircle(200, 67,centerX/8 ) ;
+    dc.fillCircle(228, 115,centerX/8 ) ;
+    dc.setColor(0xD65231, Graphics.COLOR_TRANSPARENT); //red cinabar D65231
+    dc.drawCircle(157, 28,centerX/8 ) ;
+    dc.setColor(0xF79400, Graphics.COLOR_TRANSPARENT); //orange 
+    dc.drawCircle(200, 67,centerX/8 ) ;
+    dc.setColor(0xDEDE18, Graphics.COLOR_TRANSPARENT); //yellowLime
+    dc.drawCircle(228, 115,centerX/8 ) ;
+    dc.setColor(0xADE75A, Graphics.COLOR_TRANSPARENT); //green
+    dc.drawCircle(241, centerX-5,centerX/8 ) ;
+    dc.setColor(0xA5D6FF, Graphics.COLOR_TRANSPARENT); //blue
+    dc.drawCircle(235, 230,centerX/8 ) ;
+    dc.setColor(0xC673C6 , Graphics.COLOR_TRANSPARENT); //lavendar
+    dc.drawCircle(209, 280,centerX/8 ) ;
+    dc.setColor(0xFF7BB5, Graphics.COLOR_TRANSPARENT); //pink
+    dc.drawCircle(165, 325,centerX/8 ) ;
 
     //415F5F
     //Grass Green ADE75A
