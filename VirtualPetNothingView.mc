@@ -49,21 +49,18 @@ function onUpdate(dc as Dc) as Void {
     var info = ActivityMonitor.getInfo();
     
     /*----------Clock and Calendar Variables------------------------------*/
-    var timeFormat = "$1$:$2$";
-    var clockTime = System.getClockTime();
-    var today = Gregorian.info(Time.now(), Time.FORMAT_SHORT);
-    var hours = clockTime.hour;
-    if (!System.getDeviceSettings().is24Hour) {
-        if (hours == 0) {
-            hours = 12; // Display midnight as 12:00
-        } else if (hours > 12) {
-            hours = hours - 12;
+       var timeFormat = "$1$:$2$";
+       var clockTime = System.getClockTime();
+       var today = Gregorian.info(Time.now(), Time.FORMAT_SHORT);
+              var hours = clockTime.hour;
+               if (!System.getDeviceSettings().is24Hour) {
+            if (hours > 12) {
+                hours = hours - 12;
+            }
+        } else {   
+                timeFormat = "$1$:$2$";
+                hours = hours.format("%02d");  
         }
-    } else {
-        timeFormat = "$1$:$2$";
-        hours = hours.format("%02d");
-    }
-    var timeString = Lang.format(timeFormat, [hours, clockTime.min.format("%02d")]);
     var timeStamp= new Time.Moment(Time.today().value());
     var weekdayArray = ["Day", "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"] as Array<String>;
     var monthArray = ["Month", "JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"] as Array<String>;
@@ -269,7 +266,7 @@ c: suncloudrain*/
     //dc.drawText(centerX,175*screenHeightY,wordFont,(weekdayArray[today.day_of_week]+" , "+ monthArray[today.month]+" "+ today.day +" " +today.year), Graphics.TEXT_JUSTIFY_CENTER );
     
     //Time Text
-    dc.drawText(centerX,172*screenHeightY,bigFont,timeString,  Graphics.TEXT_JUSTIFY_CENTER  ); 
+    //dc.drawText(centerX,172*screenHeightY,bigFont,timeString,  Graphics.TEXT_JUSTIFY_CENTER  ); 
    
     //Bv@wFxCyHzGEIJ B-Capricorn v-Aquarius @-Pisces w-Aries F-Taurus x-Gemini C-Cancer y-r2d2 H- z-DarthVader G-Scorpio E-Sagitarius I-Libra J-Leo
     // Draw Month Horoscope
@@ -300,36 +297,55 @@ c: suncloudrain*/
     dc.drawCircle(centerX*3/10, centerX,centerX+5 ) ;
     /*------------Draw Step Meter------------*/
     //Every 360 Steps Pikachu Levels up
-    //dc.setPenWidth(16);
+    //dc.setPenWidth(10);
     //dc.setColor(0x7B7B94, Graphics.COLOR_TRANSPARENT);
     //dc.drawCircle(centerX*3/10, centerX, centerX*310/360);
-    //dc.setColor(0xD6ADB5, Graphics.COLOR_TRANSPARENT);
-   // dc.drawArc(centerX*3/10, centerX, centerX*310/360, Graphics.ARC_COUNTER_CLOCKWISE, 1, (userSTEPS+200) ); 
-    dc.setPenWidth(5);
+    //dc.setColor(0xC8E0D8, Graphics.COLOR_TRANSPARENT);
+    //dc.drawArc(centerX*3/10, centerX, centerX*310/360, Graphics.ARC_COUNTER_CLOCKWISE, 1, (userSTEPS+200) ); 
+    //dc.setPenWidth(3);
     //Data Circles
     dc.setColor(0xFFFFFF, Graphics.COLOR_TRANSPARENT);
+    //dc.fillCircle(157, 28, centerX/8);
+    //dc.fillCircle(200, 67, centerX/8);
+    //dc.fillCircle(228, 115, centerX/8);
+    //dc.fillCircle(241, centerX-5, centerX/8);
+    //dc.fillCircle(235, 230, centerX/8);
+    //dc.fillCircle(209, 280, centerX/8);
+    //dc.fillCircle(165, 325, centerX/8);
+    //dc.setColor(0x6C7778, Graphics.COLOR_TRANSPARENT); //red cinabar D65231
+    //dc.setColor(0xD65231, Graphics.COLOR_TRANSPARENT); //red cinabar D65231
+    //dc.drawCircle(157-20, 28,centerX/8 ) ;
+    //dc.setColor(0xF79400, Graphics.COLOR_TRANSPARENT); //orange 0xF79400
+    //dc.drawCircle(200-20, 67,centerX/8 ) ;
+    //dc.setColor(0xDEDE18, Graphics.COLOR_TRANSPARENT); //yellowLime 0xDEDE18
+    //dc.drawCircle(228-20, 115,centerX/8 ) ;
+    //dc.setColor(0xADE75A, Graphics.COLOR_TRANSPARENT); //green 0xADE75A
+    //dc.drawCircle(241-20, centerX-5,centerX/8 ) ;
+    //dc.setColor(0x8CA5F7, Graphics.COLOR_TRANSPARENT); //blue 0x8CA5F7
+    //dc.drawCircle(235-20, 230,centerX/8 ) ;
+    //dc.setColor(0xC673C6 , Graphics.COLOR_TRANSPARENT); //lavendar 0xC673C6
+    //dc.drawCircle(209-20, 280,centerX/8 ) ;
+    //dc.setColor(0xFF7BB5, Graphics.COLOR_TRANSPARENT); //pink 0xFF7BB5
+    //dc.drawCircle(165-20, 325,centerX/8 ) ;
 
-    
-    dc.fillCircle(241, centerX,centerX/8 ) ;
-    dc.fillCircle(216, 272,centerX/8 ) ;
-    dc.fillCircle(157, 28,centerX/8 ) ;
-    dc.fillCircle(200, 67,centerX/8 ) ;
-    dc.fillCircle(228, 115,centerX/8 ) ;
     dc.setColor(0xD65231, Graphics.COLOR_TRANSPARENT); //red cinabar D65231
-    dc.drawCircle(157, 28,centerX/8 ) ;
-    dc.setColor(0xF79400, Graphics.COLOR_TRANSPARENT); //orange 
-    dc.drawCircle(200, 67,centerX/8 ) ;
-    dc.setColor(0xDEDE18, Graphics.COLOR_TRANSPARENT); //yellowLime
-    dc.drawCircle(228, 115,centerX/8 ) ;
-    dc.setColor(0xADE75A, Graphics.COLOR_TRANSPARENT); //green
-    dc.drawCircle(241, centerX-5,centerX/8 ) ;
-    dc.setColor(0xA5D6FF, Graphics.COLOR_TRANSPARENT); //blue
-    dc.drawCircle(235, 230,centerX/8 ) ;
-    dc.setColor(0xC673C6 , Graphics.COLOR_TRANSPARENT); //lavendar
-    dc.drawCircle(209, 280,centerX/8 ) ;
-    dc.setColor(0xFF7BB5, Graphics.COLOR_TRANSPARENT); //pink
-    dc.drawCircle(165, 325,centerX/8 ) ;
-
+    dc.drawText(137, 28, wordFont,  (userHEART+"^"), Graphics.TEXT_JUSTIFY_RIGHT );
+    dc.setColor(0xF79400, Graphics.COLOR_TRANSPARENT); //orange 0xF79400
+    dc.drawText(175, 67, wordFont,  (userCAL+"!"), Graphics.TEXT_JUSTIFY_RIGHT ); 
+    dc.setColor(0x000000, Graphics.COLOR_TRANSPARENT); //orange 0xF79400
+    //Time Text
+    dc.drawText(50, 110,bigFont, hours.format("%02d"),  Graphics.TEXT_JUSTIFY_CENTER  );
+    dc.drawText(50, 160,bigFont, clockTime.min.format("%02d"),  Graphics.TEXT_JUSTIFY_CENTER  );
+    //dc.setColor(0xDEDE18, Graphics.COLOR_TRANSPARENT); //yellowLime 0xDEDE18
+    //dc.drawCircle(228-20, 115,centerX/8 ) ;
+    //dc.setColor(0xADE75A, Graphics.COLOR_TRANSPARENT); //green 0xADE75A
+    //dc.drawCircle(241-20, centerX-5,centerX/8 ) ;
+    //dc.setColor(0x8CA5F7, Graphics.COLOR_TRANSPARENT); //blue 0x8CA5F7
+    //dc.drawCircle(235-20, 230,centerX/8 ) ;
+    //dc.setColor(0xC673C6 , Graphics.COLOR_TRANSPARENT); //lavendar 0xC673C6
+    //dc.drawCircle(209-20, 280,centerX/8 ) ;
+    //dc.setColor(0xFF7BB5, Graphics.COLOR_TRANSPARENT); //pink 0xFF7BB5
+    //dc.drawCircle(165-20, 325,centerX/8 ) ;
     //415F5F
     //Grass Green ADE75A
     //Water blue: Lightblue A5D6FF
